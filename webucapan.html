@@ -33,28 +33,13 @@
       color: white;
       cursor: pointer;
     }
-    .nav-button {
-      font-size: 24px;
-      background: none;
-      border: none;
-      color: white;
-      cursor: pointer;
-      padding: 10px;
+    .responsive-img {
+      max-width: 300px;
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      margin-bottom: 20px;
     }
-    .image-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-.responsive-img {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-  border-radius: 16px;
-  margin-bottom: 20px;
-  object-fit: contain;
-}
 
     .fireworks {
       position: fixed;
@@ -75,27 +60,6 @@
       z-index: 1;
     }
   </style>
-@media (max-width: 600px) {
-  .responsive-img {
-    max-width: 90vw;
-    max-height: 60vh;
-  }
-
-  .message-box {
-    font-size: 18px;
-    padding: 20px;
-  }
-
-  button {
-    font-size: 16px;
-    padding: 10px 20px;
-  }
-
-  .nav-button {
-    font-size: 20px;
-    padding: 8px;
-  }
-}
 </head>
 <body>
 
@@ -105,13 +69,13 @@
   <button onclick="nextScreen(2)">Mulai</button>
 </div>
 
-<!-- Halaman 2: Foto dengan tombol geser dan lanjut -->
+<!-- Halaman 2: Foto dan lanjut -->
 <div id="screen2" class="screen">
-  <div class="image-wrapper">
-    <button class="nav-button" onclick="prevImage()">←</button>
-    <img id="slideImage" class="responsive-img" src="" alt="Foto Slideshow">
-    <button class="nav-button" onclick="nextImage()">→</button>
-  </div>
+  <img 
+    src="https://raw.githubusercontent.com/luk24/foto_kekasih/main/WhatsApp%20Image%202025-06-25%20at%2020.24.06.jpeg" 
+    alt="Foto Kekasih" 
+    class="responsive-img"
+  >
   <button onclick="nextScreen(3)">Lanjut</button>
 </div>
 
@@ -124,40 +88,9 @@
 <audio id="birthdayMusic" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
 
 <script>
-  // Ganti dengan daftar foto kamu di GitHub
-  const imageList = [
-    "https://raw.githubusercontent.com/luk24/foto_kekasih/main/WhatsApp%20Image%202025-06-25%20at%2020.24.06.jpeg",
-    "https://raw.githubusercontent.com/luk24/foto_kekasih/main/rokok.png",
-    "https://raw.githubusercontent.com/luk24/foto_kekasih/main/ChatGPT%20Image%20Apr%2028%2C%202025%2C%2012_37_40%20PM.png"
-  ];
-
-  let currentImageIndex = 0;
-
-  function showImage(index) {
-    const img = document.getElementById('slideImage');
-    img.src = imageList[index];
-  }
-
-  function prevImage() {
-    currentImageIndex = (currentImageIndex - 1 + imageList.length) % imageList.length;
-    showImage(currentImageIndex);
-  }
-
-  function nextImage() {
-    currentImageIndex = (currentImageIndex + 1) % imageList.length;
-    showImage(currentImageIndex);
-  }
-
-  // Menampilkan gambar pertama saat masuk ke halaman 2
-  const originalNextScreen = nextScreen;
   function nextScreen(screenNumber) {
     document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
     document.getElementById('screen' + screenNumber).classList.add('active');
-
-    if (screenNumber === 2) {
-      currentImageIndex = 0;
-      showImage(currentImageIndex);
-    }
 
     if (screenNumber === 3) {
       startFireworks();
