@@ -47,15 +47,14 @@
       justify-content: center;
       gap: 10px;
     }
-    .responsive-img {
-  max-width: 90vw;
-  max-height: 80vh;
-  width: auto;
+.responsive-img {
+  width: 100%;
+  max-width: 300px;
   height: auto;
   border-radius: 16px;
   margin-bottom: 20px;
   object-fit: contain;
-    }
+}
 
     .fireworks {
       position: fixed;
@@ -76,6 +75,27 @@
       z-index: 1;
     }
   </style>
+@media (max-width: 600px) {
+  .responsive-img {
+    max-width: 90vw;
+    max-height: 60vh;
+  }
+
+  .message-box {
+    font-size: 18px;
+    padding: 20px;
+  }
+
+  button {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+
+  .nav-button {
+    font-size: 20px;
+    padding: 8px;
+  }
+}
 </head>
 <body>
 
