@@ -1,9 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <title>Ucapan Ulang Tahun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
@@ -12,14 +12,15 @@
       background: #000;
       color: white;
       text-align: center;
-      overflow: hidden;
+      overflow-x: hidden;
     }
     .screen {
       display: none;
       justify-content: center;
       align-items: center;
-      height: 100vh;
       flex-direction: column;
+      min-height: 100vh;
+      padding: 20px;
     }
     .screen.active {
       display: flex;
@@ -35,13 +36,13 @@
       cursor: pointer;
     }
     .responsive-img {
-      max-width: 300px;
-      width: 100%;
+      max-width: 80%;
+      max-height: 300px;
+      width: auto;
       height: auto;
-      border-radius: 16px;
-      margin-bottom: 20px;
+      border-radius: 12px;
+      margin-bottom: 16px;
     }
-
     .fireworks {
       position: fixed;
       top: 0;
@@ -64,13 +65,11 @@
 </head>
 <body>
 
-<!-- Halaman 1: Mulai -->
 <div id="screen1" class="screen active">
-  <h1>Selamat Datang!</h1>
+  <h1>Jalo sayangg</h1>
   <button onclick="nextScreen(2)">Mulai</button>
 </div>
 
-<!-- Halaman 2: Foto dan lanjut -->
 <div id="screen2" class="screen">
   <img 
     src="https://raw.githubusercontent.com/luk24/foto_kekasih/main/WhatsApp%20Image%202025-06-25%20at%2020.24.06.jpeg" 
@@ -80,7 +79,6 @@
   <button onclick="nextScreen(3)">Lanjut</button>
 </div>
 
-<!-- Halaman 3: Petasan dan pesan -->
 <div id="screen3" class="screen">
   <canvas id="fireworks" class="fireworks"></canvas>
   <div class="message-box">Selamat ulang tahun sayangku 🎉</div>
@@ -123,7 +121,8 @@
 
     function updateParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach((p, i) => {
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
         p.x += Math.cos(p.angle) * p.speed;
         p.y += Math.sin(p.angle) * p.speed;
         p.life--;
@@ -132,7 +131,7 @@
         ctx.fillStyle = p.color;
         ctx.fill();
         if (p.life <= 0) particles.splice(i, 1);
-      });
+      }
     }
 
     setInterval(() => {
